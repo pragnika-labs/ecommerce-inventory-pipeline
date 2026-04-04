@@ -1,0 +1,17 @@
+# Python cache files — auto-generated, not needed on GitHub
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter notebook checkpoints — auto-saved drafts, not needed
+.ipynb_checkpoints/
+
+# Environment variables file — if you ever store passwords here
+.env
+
+# VS Code editor settings — personal to your machine
+.vscode/
+
+# Operating system files — hidden files Windows/Mac create automatically
+.DS_Store
+Thumbs.db
