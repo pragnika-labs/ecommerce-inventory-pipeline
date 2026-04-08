@@ -4,7 +4,7 @@ import sqlite3
 import os
 from datetime import datetime, timedelta
 
-# Product Catalogue (20 items with prices and starting warehouse stock)
+# Product Catalogue (20 products with prices and starting warehouse stock)
 products = [
     # Electronics
     {"product_id": "P01", "product_name": "Wireless Earbuds", "category": "Electronics", "price": 1399, "initial_stock":200},
@@ -42,6 +42,18 @@ city_weights = [0.30, 0.08, 0.25, 0.20, 0.05, 0.12]
 payment_methods = ["UPI", "COD", "Card", "Wallet", "Net Banking"]
 payment_weights = [0.42, 0.15, 0.28, 0.05, 0.10]
 
+#Customer first and last names
+first_names = [
+    "Aarav", "Pooja", "Yogesh", "Meera", "Nikhil",
+    "Mrudula", "Snehith", "Rohan", "Abhiram", "Arjun",
+    "Kavya", "Nisha", "Rishika", "Chitra", "Pragnya"
+]
+
+last_names = [
+    "Sharma", "Singh", "Iyer", "Reddy", "Gupta",
+    "Naidu", "Kumar", "Patel", "Varma", "Rao",
+    "Menon", "Goud", "Shetty", "Mehta", "Choudary"
+]
 
 # Function 1: get_next_day_number()
 # Checks the database to figure out what day we need to generate next.
@@ -132,7 +144,7 @@ def get_current_stock_levels():
         return stock
     
 # Funtion 3: generate_day(day_number, stock_levels)
-# Generates the actual random orders and does the math for lost revenue.
+# Generates the actual random orders, does the math for lost revenue and introduces realistic messy customer data.
 def generate_day(day_number, stock_levels):
     start_date = datetime(2024,3,1)
     current_date = start_date + timedelta(days=day_number - 1)
@@ -191,6 +203,56 @@ def generate_day(day_number, stock_levels):
         city = random.choices(cities, weights = city_weights)[0]
         payment_method = random.choices(payment_methods, weights = payment_weights)[0]
 
+        #Simulate messy customer data
+        #Customer name errors
+        first = random.choice(first_names)
+        last = random.choice(last_names)
+        customer_name = f"{first} {last}"
+
+        if random.random() < 0.07:
+            customer_name = None
+
+        elif random.random() < 0.10:
+            customer_name = customer_name.lower()
+
+        elif random.random() < 0.08:
+            customer_name = customer_name.upper()
+
+        elif random.random() < 0.08:
+            customer_name = f"{first}{last}"
+
+        #Customer phone number errors
+        first_digit = str(random.randint(6,9))
+        remaining_digits = "".join([str(random.randint(0,9)) for _ in range(9)])
+        customer_phone = first_digit + remaining_digits
+
+        if random.random() < 0.08:
+            customer_phone = None
+
+        elif random.random() < 0.10:
+            customer_phone = f"{customer_phone[:3]}-{customer_phone[3:6]}-{customer_phone[6:]}"
+
+        elif random.random() < 0.07:
+            customer_phone = f"{customer_phone[:3]} {customer_phone[3:6]} {customer_phone[6:]}"
+
+        elif random.random() < 0.05:
+            customer_phone = customer_phone[:8]
+
+        #City inconsistencies
+        if random.random() < 0.08:
+            city = None
+
+        elif random.random() < 0.15:
+            casing = random.choice(["lower","upper"])
+            if casing == "lower":
+                city = city.lower()
+            else:
+                city = city.upper()
+
+        #Duplicate orders
+        if len(rows)> 0 and random.random() < 0.05:
+            order_num = int(rows[-1]["order_id"].split("-")[1])
+
         # Save this receipt
         rows.append({
             "order_id" : f"ORD-{order_num}",
@@ -205,6 +267,8 @@ def generate_day(day_number, stock_levels):
             "revenue" : revenue,
             "city" : city,
             "payment_method" : payment_method,
+            "customer_name" : customer_name,
+            "customer_phone" : customer_phone,
             "stock_remaining" : stock_remaining,
             "lost_sales" : lost_sales,
             "lost_revenue" : lost_revenue,
