@@ -15,3 +15,5 @@ __pycache__/
 # Operating system files — hidden files Windows/Mac create automatically
 .DS_Store
 Thumbs.db
+
+data/*.csv
