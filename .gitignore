@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 *.pyo
+*.db
+*.sqlite
 
 # Jupyter notebook checkpoints — auto-saved drafts, not needed
 .ipynb_checkpoints/
