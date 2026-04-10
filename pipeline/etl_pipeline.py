@@ -3,8 +3,6 @@ import sqlite3
 import os
 from sqlalchemy import create_engine
 
-from data.generate_data import main as generate_todays_data
-
 #Funtion 1: extract()
 
 def extract():
@@ -56,7 +54,7 @@ def transform(df):
     name_mask = df["customer_name"] != "Unknown"
     df.loc[name_mask, "customer_name"] = (df.loc[name_mask, "customer_name"]
                                      .str.strip()
-                                     .str.replace(r'(?<!^)(?=[A-Z])', ' ', regex = True)
+                                     .str.replace(r'(?<=[a-z])(?=[A-Z])', ' ', regex=True)
                                      .str.title()
                                      )
     
@@ -66,6 +64,118 @@ def transform(df):
                                             .str.replace(" ", "", regex = False)
                                             .str.strip()
                                             )
+    
+    df["phone_valid"] = df["customer_phone"].apply(
+        lambda x: len(str(x)) == 10 if x != "Unknown" else False
+    )
+
+    #Fixing city
+    city_mask = df["city"] != "Unknown"
+    df.loc[city_mask, "city"] = (df.loc[city_mask, "city"]
+                                 .str.strip()
+                                 .str.title()
+    )
+
+    df["revenue"] = df["fulfilled"] * df["price"]
+
+    rows_before = len(df)
+    df = df.dropna(subset = ["product_id", "price", "quantity"])
+    rows_after = len(df)
+
+    if rows_before != rows_after:
+        print(f"Dropped {rows_before - rows_after} rows with missing values")
+    
+    print(f"Transform complete: {len(df)} clean rows ready")
+    return df
+
+
+#Funtion 3: load(df)
+def load(df):
+    os.makedirs("database", exist_ok=True)
+
+    #create sqlalchemy engine
+    engine = create_engine("sqlite:///database/sales.db")
+
+    df.to_sql(
+        name = "sales_clean",
+        con = engine, 
+        if_exists = "append",
+        index = False
+    )
+
+    print(f"Loaded {len(df)} rows into sales.db - sales_clean table")
+
+#Funtion 4: delete_csv()
+def delete_csv():
+    csv_path = "data/today.csv"
+    
+    if os.path.exists(csv_path):
+        os.remove(csv_path)
+        print("today.csv deleted")
+    else:
+        print("today.csv is already removed")
+
+
+#Function 5: verify()
+def verify():
+    conn = sqlite3.connect("database/sales.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM sales_clean")
+    total_rows = cursor.fetchone()[0]
+
+    cursor.execute("SELECT MIN(day_number), MAX(day_number) FROM sales_clean")
+    min_day, max_day = cursor.fetchone()
+
+    cursor.execute("SELECT SUM(revenue) FROM sales_clean")
+    total_revenue = cursor.fetchone()[0]
+
+    conn.close()
+
+    print()
+    print(" -"*22)
+    print("DATABASE SUMMARY")
+    print(" -"*22)
+    print(f"Total rows: {total_rows:,}")
+    print(f"Days in database: Day {min_day} to Day {max_day}")
+    print(f"Total revenue: {total_revenue}")
+    print(" -"*22)
+
+#Function 6: run_etl()
+def run_etl():
+    print("ETL PIPELINE STARTING.....")
+    
+    print("\n[STEP 1] EXTRACTING....")
+    df = extract()
+
+    if df is None:
+        print("Pipeline stopped - couldn't find today.csv")
+        return
+    
+    print("\n[STEP 2] TRANSFORMING....")
+    df = transform(df)
+
+    print("\n[STEP 3] LOADING....")
+    load(df)
+
+    print("\n[STEP 4] CLEANING UP....")
+    delete_csv()
+
+    print("\n[STEP 5] VERIFYING....")
+    verify()
+
+    print("\n ETL PIPELINE COMPLETE")
+
+if __name__ == "__main__":
+    run_etl()
+
+
+
+
+
+    
+
+
     
 
 
