@@ -24,7 +24,7 @@ def transform(df):
     print("Starting Transformation.....")
 
     #Converting datatypes
-    df["date"] = pd.to_datetime(df["date"])
+    df["date"] = pd.to_datetime(df["date"]).strftime('%Y-%m-%d')
 
     df["price"] = pd.to_numeric(df["price"], errors="coerce")
     df["quantity"] = pd.to_numeric(df["quantity"], errors="coerce")
@@ -138,7 +138,7 @@ def verify():
     print(" -"*22)
     print(f"Total rows: {total_rows:,}")
     print(f"Days in database: Day {min_day} to Day {max_day}")
-    print(f"Total revenue: {total_revenue}")
+    print(f"Total revenue: {total_revenue:,.0f}")
     print(" -"*22)
 
 #Function 6: run_etl()
@@ -168,19 +168,3 @@ def run_etl():
 
 if __name__ == "__main__":
     run_etl()
-
-
-
-
-
-    
-
-
-    
-
-
-
-
-
-
-    
