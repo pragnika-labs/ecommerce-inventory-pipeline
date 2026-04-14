@@ -21,10 +21,8 @@ def extract():
 
 def transform(df):
 
-    print("Starting Transformation.....")
-
     #Converting datatypes
-    df["date"] = pd.to_datetime(df["date"]).strftime('%Y-%m-%d')
+    df["date"] = pd.to_datetime(df["date"]).dt.strftime('%Y-%m-%d')
 
     df["price"] = pd.to_numeric(df["price"], errors="coerce")
     df["quantity"] = pd.to_numeric(df["quantity"], errors="coerce")
@@ -133,38 +131,38 @@ def verify():
     conn.close()
 
     print()
-    print(" -"*22)
+    print("="*30)
     print("DATABASE SUMMARY")
-    print(" -"*22)
+    print("="*30)
     print(f"Total rows: {total_rows:,}")
     print(f"Days in database: Day {min_day} to Day {max_day}")
     print(f"Total revenue: {total_revenue:,.0f}")
-    print(" -"*22)
+    print("="*30)
 
 #Function 6: run_etl()
 def run_etl():
-    print("ETL PIPELINE STARTING.....")
+    print("ETL PIPELINE STARTING...")
     
-    print("\n[STEP 1] EXTRACTING....")
+    print("\n[STEP 1] EXTRACTING")
     df = extract()
 
     if df is None:
         print("Pipeline stopped - couldn't find today.csv")
         return
     
-    print("\n[STEP 2] TRANSFORMING....")
+    print("\n[STEP 2] TRANSFORMING")
     df = transform(df)
 
-    print("\n[STEP 3] LOADING....")
+    print("\n[STEP 3] LOADING")
     load(df)
 
-    print("\n[STEP 4] CLEANING UP....")
+    print("\n[STEP 4] CLEANING UP")
     delete_csv()
 
     print("\n[STEP 5] VERIFYING....")
     verify()
 
-    print("\n ETL PIPELINE COMPLETE")
+    print("\nETL PIPELINE COMPLETE")
 
 if __name__ == "__main__":
     run_etl()

@@ -285,7 +285,7 @@ def main():
     day_number = get_next_day_number()
     stock_levels = get_current_stock_levels()
 
-    print(f"Generating data for Day {day_number}......")
+    print(f"Generating data for Day {day_number}...\n")
 
     df = generate_day(day_number, stock_levels)
 
@@ -293,14 +293,14 @@ def main():
     df.to_csv("data/today.csv", index=False)
 
     # Print a nice summary to the terminal
-    print("=" * 45)
+    print("=" * 30)
     print(f"Day {day_number} complete")
     print(f"Orders generated: {len(df)}")
     print(f"Date: {df['date'].iloc[0]}")
     print(f"Revenue today: Rs.{df['revenue'].sum():,.0f}")
     print(f"Lost revenue: Rs.{df['lost_revenue'].sum():,.0f}")
     print(f"Saved to: data/today.csv")
-    print("=" * 45)
+    print("=" * 30)
 
 if __name__ == "__main__":
     main()

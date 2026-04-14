@@ -42,11 +42,13 @@ def daily_pipeline():
         print(f"[SCHEDULER] All {target_days} day complete - press Ctrl+C to stop")
         return
     print()
-    print("-"*30)
+    print("-"*35)
     print(f"[SCHEDULER] Starting day {current_day + 1} of {target_days}")
-    print("-"*30)
+    print("-"*35)
+    print()
 
     print("[STEP 1] Running generate_data.py....")
+    print()
     result_generate = subprocess.run(["python", "data/generate_data.py"])
 
     if result_generate.returncode != 0:
@@ -57,12 +59,43 @@ def daily_pipeline():
         print("[ERROR] today.csv not found")
         return
     
-    print("[STEP 2] Running etl_pipeline.py...")
+    print("\n[STEP 2] Running etl_pipeline.py...\n")
     result_etl = subprocess.run(["python", "pipeline/etl_pipeline.py"])
 
     if result_etl.returncode != 0:
         print("[ERROR] etl_pipeline.py failed")
         return
     
-    
+    new_day = get_current_day()
 
+    print()
+    print(f"[SCHEDULER] Day {new_day} of {target_days} complete")
+
+    if new_day >= target_days:
+        print()
+        print("-"*30)
+        print(f"All {target_days} complete")
+        print("Press Ctrl+C to stop the scheduler")
+    else:
+        remaining = target_days - new_day
+        print(f"[SCHEDULER] {remaining} days remaining")
+    print()
+    print("-"*45 + "x" + "-"*45)
+
+
+#Schedule setup
+schedule.every(5).seconds.do(daily_pipeline)
+
+print()
+print("-"*30)
+print("PIPELINE SCHEDULER STARTING")
+print("-"*30)
+print("\n[STARTUP] Running Day 1 immediately...")
+print("\n[SCHEDULER] Running automatically every 5 seconds...")
+print("[SCHEDULER] Press Ctrl+C to stop\n")
+daily_pipeline()
+
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
