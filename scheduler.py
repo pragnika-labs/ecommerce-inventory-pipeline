@@ -36,31 +36,33 @@ def get_current_day():
         conn.close()
         return 0
     
-def generate_job():
+def daily_pipeline():
     current_day = get_current_day()
-
     if current_day >= target_days:
-        print(f"Target of {target_days} days reached.")
+        print(f"[SCHEDULER] All {target_days} day complete - press Ctrl+C to stop")
+        return
+    print()
+    print("-"*30)
+    print(f"[SCHEDULER] Starting day {current_day + 1} of {target_days}")
+    print("-"*30)
+
+    print("[STEP 1] Running generate_data.py....")
+    result_generate = subprocess.run(["python", "data/generate_data.py"])
+
+    if result_generate.returncode != 0:
+        print("[ERROR] generate_data.py failed")
         return
     
-    print(f"\n[SCHEDULER] Running generate_data.py - building Day {current_day + 1}....")
-    subprocess.run(["python", "data/generate_data.py"])
-
-def etl_job():
     if not os.path.exists("data/today.csv"):
-        print("[SCHEDULER] today.csv not found")
+        print("[ERROR] today.csv not found")
         return
     
-    current_day = get_current_day()
+    print("[STEP 2] Running etl_pipeline.py...")
+    result_etl = subprocess.run(["python", "pipeline/etl_pipeline.py"])
 
-    if current_day >= target_days:
-        print(f"Target of {target_days} days reached.")
+    if result_etl.returncode != 0:
+        print("[ERROR] etl_pipeline.py failed")
         return
     
-    print(f"[SCHEDULER] Running etl_pipeline.py - cleaning and loading {current_day + 1}....")
-    subprocess.run(["python", "pipeline/etl_pipeline.py"])
-
     
-
-      
 
