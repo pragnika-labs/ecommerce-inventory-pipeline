@@ -7,18 +7,18 @@ from datetime import datetime, timedelta
 # Product Catalogue (20 products with prices and starting warehouse stock)
 products = [
     # Electronics
-    {"product_id": "P01", "product_name": "Wireless Earbuds", "category": "Electronics", "price": 1399, "initial_stock":200},
-    {"product_id": "P02", "product_name": "Bluetooth Speaker", "category": "Electronics", "price": 1899, "initial_stock":170},
-    {"product_id": "P03", "product_name": "Wireless Mouse", "category": "Electronics", "price": 900, "initial_stock":220},
-    {"product_id": "P04", "product_name": "Power Bank", "category": "Electronics", "price": 2799, "initial_stock":130},
-    {"product_id": "P05", "product_name": "Headphones", "category": "Electronics", "price": 2200, "initial_stock":210},
+    {"product_id": "P01", "product_name": "Wireless Earbuds", "category": "Electronics", "price": 2199, "initial_stock":310},
+    {"product_id": "P02", "product_name": "Bluetooth Speaker", "category": "Electronics", "price": 1899, "initial_stock":320},
+    {"product_id": "P03", "product_name": "Wireless Mouse", "category": "Electronics", "price": 979, "initial_stock":340},
+    {"product_id": "P04", "product_name": "Power Bank", "category": "Electronics", "price": 2199, "initial_stock":410},
+    {"product_id": "P05", "product_name": "Headphones", "category": "Electronics", "price": 2099, "initial_stock":310},
 
     # Fitness
-    {"product_id": "P06", "product_name": "Yoga Mat", "category": "Fitness", "price": 799, "initial_stock":140},
-    {"product_id": "P07", "product_name": "Jump Rope", "category": "Fitness", "price": 349, "initial_stock":220},
-    {"product_id": "P08", "product_name": "Gym Gloves", "category": "Fitness", "price": 459, "initial_stock":180},
-    {"product_id": "P09", "product_name": "Resistance Bands", "category": "Fitness", "price": 499, "initial_stock":250},
-    {"product_id": "P10", "product_name": "Gym Ball", "category": "Fitness", "price": 879, "initial_stock":120},
+    {"product_id": "P06", "product_name": "Yoga Mat", "category": "Fitness", "price": 799, "initial_stock":280},
+    {"product_id": "P07", "product_name": "Jump Rope", "category": "Fitness", "price": 349, "initial_stock":300},
+    {"product_id": "P08", "product_name": "Gym Gloves", "category": "Fitness", "price": 459, "initial_stock":270},
+    {"product_id": "P09", "product_name": "Resistance Bands", "category": "Fitness", "price": 499, "initial_stock":320},
+    {"product_id": "P10", "product_name": "Gym Ball", "category": "Fitness", "price": 879, "initial_stock":220},
 
     # Beauty
     {"product_id": "P11", "product_name": "Sunscreen SPF 50", "category": "Beauty", "price": 559, "initial_stock":230},
@@ -28,16 +28,16 @@ products = [
     {"product_id": "P15", "product_name": "Sheet Mask Pack", "category": "Beauty", "price": 579, "initial_stock":300},
 
     # Health
-    {"product_id": "P16", "product_name": "Creatine Powder", "category": "Health", "price": 899, "initial_stock":130},
+    {"product_id": "P16", "product_name": "Creatine Powder", "category": "Health", "price": 899, "initial_stock":190},
     {"product_id": "P17", "product_name": "Fish Oil Capsules", "category": "Health", "price": 639, "initial_stock":270},
     {"product_id": "P18", "product_name": "Multivitamin Tablets", "category": "Health", "price": 709, "initial_stock":310},
     {"product_id": "P19", "product_name": "Green Tea box", "category": "Health", "price": 459, "initial_stock":250},
-    {"product_id": "P20", "product_name": "Whey Protein Bar", "category": "Health", "price": 299, "initial_stock":200},
+    {"product_id": "P20", "product_name": "Whey Protein Bar", "category": "Health", "price": 299, "initial_stock":250},
 ]
 
 # Demographics (Weighted to make data look realistic, mostly Hyderabad and UPI)
 cities = ["Hyderabad", "Chennai", "Bengaluru", "Mumbai", "Punjab", "Kolkata"]
-city_weights = [0.30, 0.08, 0.25, 0.20, 0.05, 0.12]
+city_weights = [0.35, 0.08, 0.25, 0.15, 0.05, 0.12]
 
 payment_methods = ["UPI", "COD", "Card", "Wallet", "Net Banking"]
 payment_weights = [0.42, 0.15, 0.28, 0.05, 0.10]
@@ -164,15 +164,15 @@ def generate_day(day_number, stock_levels):
         # Viral logic: P01 explodes in popularity on Day 8
         if pid == "P01":
             if day_number <= 7:
-                qty = random.randint(2,8)
+                qty = random.randint(5,10)
             elif day_number == 8:
-                qty = random.randint(35,50)
+                qty = random.randint(55,75)
             elif day_number == 9:
-                qty = random.randint(20,30)
+                qty = random.randint(40,50)
             elif day_number == 10:
-                qty = random.randint(10,15)
+                qty = random.randint(20,35)
             else:
-                qty = random.randint(2,8)
+                qty = random.randint(5,10)
         else:
             qty = random.randint(2,8)
 
