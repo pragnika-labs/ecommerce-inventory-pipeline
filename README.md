@@ -5,7 +5,6 @@ E-commerce businesses lose revenue when products run out of stock and there is n
 
 ## How the Pipeline Works
 
-graph LR
 generate_data.py -> today.csv -> etl_pipeline.py -> sales.db
 
 1. `generate_data.py` checks the database for the last recorded day.
@@ -50,6 +49,7 @@ generate_data.py -> today.csv -> etl_pipeline.py -> sales.db
 - **Schedule** - Data generation and ETL pipeline automation
 
 ## Project Structure
+```text
 ecommerce-inventory-pipeline/
 ├── analysis/
 │   ├── charts/
@@ -76,6 +76,7 @@ ecommerce-inventory-pipeline/
 ├── .gitignore
 ├── README.md
 └── scheduler.py
+```
 
 ## How to Run
 
