@@ -5,10 +5,7 @@ E-commerce businesses lose revenue when products run out of stock and there is n
 
 ## How the Pipeline Works
 
-graph LR
-  A[generate_data.py] --> B(today.csv)
-  B --> C[etl_pipeline.py]
-  C --> D[(sales.db)]
+generate_data.py -> today.csv -> etl_pipeline.py -> sales.db
 
 1. `generate_data.py` checks the database for the last recorded day.
 2. Generates that day's orders with realistic messy customer data.
