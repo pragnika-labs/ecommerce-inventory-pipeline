@@ -2,10 +2,10 @@
 SELECT product_id,
 product_name,
 MIN(stock_remaining) AS current_stock,
-ROUND(AVG(quantity) * 2, 0) AS reorder_threshold,
+ROUND((SUM(quantity) / 30.0) * 2, 0) AS reorder_threshold,
 SUM(lost_revenue) AS lost_revenue_so_far,
 CASE
-WHEN MIN(stock_remaining) < ROUND(AVG(quantity) * 2, 0)
+WHEN MIN(stock_remaining) < ROUND((SUM(quantity) / 30.0) * 2, 0)
 THEN 'REORDER NOW'
 ELSE 'OK'
 END AS alert_status
