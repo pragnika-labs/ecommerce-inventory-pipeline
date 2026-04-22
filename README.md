@@ -1,3 +1,4 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 # E-Commerce Inventory & Sales Analytics Pipeline
 
 ## Business Problem
