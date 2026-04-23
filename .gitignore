@@ -20,6 +20,3 @@ Thumbs.db
 
 # Temporary daily CSV — deleted after ETL loads it to database
 data/*.csv
-
-# Log files
-*.txt
