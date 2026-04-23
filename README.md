@@ -14,6 +14,9 @@ generate_data.py -> today.csv -> etl_pipeline.py -> sales.db
 5. `scheduler.py` runs both scripts automatically on a daily schedule.
 6. `insights.ipynb` is run manually by the analyst to review the latest data, charts, and business insights.
 
+## Pipeline Log
+`full_30_day_log.txt` contains a record of every pipeline run - date, day number, rows loaded, orders generated and revenue figures. This demonstrates the scheduler ran successfully for all 30 days.
+
 ## Key Findings
 - Wireless Earbuds generated Rs.646,506 in revenue but caused Rs.593,730 in lost sales after going viral on Day 8.
 - First stockout occurred on 2024-03-10 --> stock depleted within 2 days.
