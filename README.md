@@ -1,3 +1,4 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 # E-Commerce Inventory & Sales Analytics Pipeline
 
 ## Business Problem
@@ -52,6 +53,7 @@ generate_data.py -> today.csv -> etl_pipeline.py -> sales.db
 - **Schedule** - Data generation and ETL pipeline automation
 
 ## Project Structure
+```text
 ecommerce-inventory-pipeline/
 ├── analysis/
 │   ├── charts/
@@ -78,6 +80,7 @@ ecommerce-inventory-pipeline/
 ├── .gitignore
 ├── README.md
 └── scheduler.py
+```
 
 ## How to Run
 
