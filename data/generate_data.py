@@ -146,6 +146,8 @@ def get_current_stock_levels():
 # Funtion 3: generate_day(day_number, stock_levels)
 # Generates the actual random orders, does the math for lost revenue and introduces realistic messy customer data.
 def generate_day(day_number, stock_levels):
+    
+    random.seed(42 + day_number)
     start_date = datetime(2024,3,1)
     current_date = start_date + timedelta(days=day_number - 1)
     rows = []
@@ -255,23 +257,23 @@ def generate_day(day_number, stock_levels):
 
         # Save this receipt
         rows.append({
-            "order_id" : f"ORD-{order_num}",
-            "date" : current_date.strftime("%Y-%m-%d"),
-            "day_number" : day_number,
-            "product_id" : pid,
-            "product_name" : product["product_name"],
-            "category" : product["category"],
-            "price" : price,
-            "quantity" : qty,
-            "fulfilled" : fulfilled,
-            "revenue" : revenue,
-            "city" : city,
-            "payment_method" : payment_method,
-            "customer_name" : customer_name,
-            "customer_phone" : customer_phone,
-            "stock_remaining" : stock_remaining,
-            "lost_sales" : lost_sales,
-            "lost_revenue" : lost_revenue,
+            "order_id"          : f"ORD-{order_num}",
+            "date"              : current_date.strftime("%Y-%m-%d"),
+            "day_number"        : day_number,
+            "product_id"        : pid,
+            "product_name"      : product["product_name"],
+            "category"          : product["category"],
+            "price"             : price,
+            "quantity"          : qty,
+            "fulfilled"         : fulfilled,
+            "revenue"           : revenue,
+            "city"              : city,
+            "payment_method"    : payment_method,
+            "customer_name"     : customer_name,
+            "customer_phone"    : customer_phone,
+            "stock_remaining"   : stock_remaining,
+            "lost_sales"        : lost_sales,
+            "lost_revenue"      : lost_revenue,
         })
 
         order_num += 1
@@ -296,9 +298,9 @@ def main():
     print("=" * 30)
     print(f"Day {day_number} complete")
     print(f"Orders generated: {len(df)}")
-    print(f"Date: {df['date'].iloc[0]}")
-    print(f"Revenue today: Rs.{df['revenue'].sum():,.0f}")
-    print(f"Lost revenue: Rs.{df['lost_revenue'].sum():,.0f}")
+    print(f"Date            : {df['date'].iloc[0]}")
+    print(f"Revenue today   : Rs.{df['revenue'].sum():,.0f}")
+    print(f"Lost revenue    : Rs.{df['lost_revenue'].sum():,.0f}")
     print(f"Saved to: data/today.csv")
     print("=" * 30)
 
