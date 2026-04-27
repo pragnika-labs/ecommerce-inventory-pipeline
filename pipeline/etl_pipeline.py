@@ -58,7 +58,7 @@ def transform(df):
     
     phone_mask = df["customer_phone"] != "Unknown"
     df.loc[phone_mask, "customer_phone"] = (df.loc[phone_mask, "customer_phone"]
-                                            .str.replace("-", "", regex = False)
+                                            .astype(str).str.replace("-", "", regex = False)
                                             .str.replace(" ", "", regex = False)
                                             .str.strip()
                                             )
@@ -134,9 +134,9 @@ def verify():
     print("="*30)
     print("DATABASE SUMMARY")
     print("="*30)
-    print(f"Total rows: {total_rows:,}")
+    print(f"Total rows      : {total_rows:,}")
     print(f"Days in database: Day {min_day} to Day {max_day}")
-    print(f"Total revenue: {total_revenue:,.0f}")
+    print(f"Total revenue   : {total_revenue:,.0f}")
     print("="*30)
 
 #Function 6: run_etl()
