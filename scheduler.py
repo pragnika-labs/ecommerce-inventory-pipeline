@@ -65,9 +65,12 @@ def daily_pipeline():
     if result_etl.returncode != 0:
         print("[ERROR] etl_pipeline.py failed")
         return
-    
-    new_day = get_current_day()
 
+    new_day = get_current_day()
+    if new_day % 5 == 0:
+            print(f"\n[SCHEDULER] Day {new_day} - Running analysis...")
+            subprocess.run(["python", "pipeline/analysis_report.py"])
+    
     print()
     print(f"[SCHEDULER] Day {new_day} of {target_days} complete")
 
