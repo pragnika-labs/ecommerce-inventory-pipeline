@@ -1,0 +1,74 @@
+==================================================
+AUTOMATED ANALYSIS REPORT
+Day  : 25
+Date : 2024-03-25
+==================================================
+
+ALERT STATUS: ALERT
+
+PRODUCTS NEEDING REORDER
+------------------------------
+[CRITICAL] Wireless Earbuds
+Current stock     : 0
+Reorder threshold : 38
+Lost so far       : Rs.683,889
+
+[CRITICAL] Skin Tint
+Current stock     : 0
+Reorder threshold : 18
+Lost so far       : Rs.63,547
+
+[CRITICAL] Gym Ball
+Current stock     : 0
+Reorder threshold : 19
+Lost so far       : Rs.62,409
+
+[CRITICAL] Creatine Powder
+Current stock     : 0
+Reorder threshold : 17
+Lost so far       : Rs.58,435
+
+[CRITICAL] Face Serum
+Current stock     : 0
+Reorder threshold : 20
+Lost so far       : Rs.51,210
+
+[CRITICAL] Sunscreen SPF 50
+Current stock     : 0
+Reorder threshold : 19
+Lost so far       : Rs.33,540
+
+[CRITICAL] Fish Oil Capsules
+Current stock     : 0
+Reorder threshold : 17
+Lost so far       : Rs.10,224
+
+[CRITICAL] Green Tea box
+Current stock     : 0
+Reorder threshold : 17
+Lost so far       : Rs.9,639
+
+[CRITICAL] Whey Protein Bar
+Current stock     : 0
+Reorder threshold : 18
+Lost so far       : Rs.8,372
+
+[CRITICAL] Gym Gloves
+Current stock     : 0
+Reorder threshold : 19
+Lost so far       : Rs.8,262
+
+[WARNING] Jump Rope
+Current stock     : 4
+Reorder threshold : 18
+
+KPI SUMMARY
+------------------------------
+Total revenue       : Rs.4,543,741
+Total orders        : 989
+Total lost revenue  : Rs.989,527
+Top city            : Hyderabad
+Days of data        : 25
+
+Charts saved to:
+analysis/auto_charts/day_25/

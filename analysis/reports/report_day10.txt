@@ -1,0 +1,25 @@
+==================================================
+AUTOMATED ANALYSIS REPORT
+Day  : 10
+Date : 2024-03-10
+==================================================
+
+ALERT STATUS: ALERT
+
+PRODUCTS NEEDING REORDER
+------------------------------
+[CRITICAL] Wireless Earbuds
+Current stock     : 0
+Reorder threshold : 28
+Lost so far       : Rs.345,243
+
+KPI SUMMARY
+------------------------------
+Total revenue       : Rs.2,217,576
+Total orders        : 386
+Total lost revenue  : Rs.345,243
+Top city            : Hyderabad
+Days of data        : 10
+
+Charts saved to:
+analysis/auto_charts/day_10/

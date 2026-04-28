@@ -1,0 +1,103 @@
+==================================================
+AUTOMATED ANALYSIS REPORT
+Day  : 30
+Date : 2024-03-30
+==================================================
+
+ALERT STATUS: ALERT
+
+PRODUCTS NEEDING REORDER
+------------------------------
+[CRITICAL] Wireless Earbuds
+Current stock     : 0
+Reorder threshold : 44
+Lost so far       : Rs.853,212
+
+[CRITICAL] Creatine Powder
+Current stock     : 0
+Reorder threshold : 23
+Lost so far       : Rs.147,436
+
+[CRITICAL] Skin Tint
+Current stock     : 0
+Reorder threshold : 22
+Lost so far       : Rs.137,885
+
+[CRITICAL] Gym Ball
+Current stock     : 0
+Reorder threshold : 24
+Lost so far       : Rs.116,907
+
+[CRITICAL] Face Serum
+Current stock     : 0
+Reorder threshold : 23
+Lost so far       : Rs.78,522
+
+[CRITICAL] Sunscreen SPF 50
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.51,428
+
+[CRITICAL] Fish Oil Capsules
+Current stock     : 0
+Reorder threshold : 22
+Lost so far       : Rs.51,120
+
+[CRITICAL] Gym Gloves
+Current stock     : 0
+Reorder threshold : 23
+Lost so far       : Rs.36,720
+
+[CRITICAL] Green Tea box
+Current stock     : 0
+Reorder threshold : 20
+Lost so far       : Rs.29,376
+
+[CRITICAL] Jade Roller
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.21,402
+
+[CRITICAL] Whey Protein Bar
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.21,229
+
+[CRITICAL] Multivitamin Tablets
+Current stock     : 0
+Reorder threshold : 22
+Lost so far       : Rs.18,434
+
+[CRITICAL] Jump Rope
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.15,007
+
+[CRITICAL] Sheet Mask Pack
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.7,527
+
+[CRITICAL] Resistance Bands
+Current stock     : 0
+Reorder threshold : 21
+Lost so far       : Rs.499
+
+[WARNING] Headphones
+Current stock     : 5
+Reorder threshold : 18
+
+[WARNING] Wireless Mouse
+Current stock     : 6
+Reorder threshold : 22
+
+KPI SUMMARY
+------------------------------
+Total revenue       : Rs.5,127,676
+Total orders        : 1,207
+Total lost revenue  : Rs.1,586,704
+Top city            : Hyderabad
+Days of data        : 30
+
+Charts saved to:
+analysis/auto_charts/day_30/

@@ -1,0 +1,18 @@
+==================================================
+AUTOMATED ANALYSIS REPORT
+Day  : 5
+Date : 2024-03-05
+==================================================
+
+ALERT STATUS: ALL CLEAR
+
+KPI SUMMARY
+------------------------------
+Total revenue       : Rs.949,042
+Total orders        : 194
+Total lost revenue  : Rs.0
+Top city            : Hyderabad
+Days of data        : 5
+
+Charts saved to:
+analysis/auto_charts/day_05/

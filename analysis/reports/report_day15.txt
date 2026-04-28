@@ -1,0 +1,29 @@
+==================================================
+AUTOMATED ANALYSIS REPORT
+Day  : 15
+Date : 2024-03-15
+==================================================
+
+ALERT STATUS: ALERT
+
+PRODUCTS NEEDING REORDER
+------------------------------
+[CRITICAL] Wireless Earbuds
+Current stock     : 0
+Reorder threshold : 30
+Lost so far       : Rs.400,218
+
+[WARNING] Creatine Powder
+Current stock     : 2
+Reorder threshold : 12
+
+KPI SUMMARY
+------------------------------
+Total revenue       : Rs.3,149,984
+Total orders        : 593
+Total lost revenue  : Rs.400,218
+Top city            : Hyderabad
+Days of data        : 15
+
+Charts saved to:
+analysis/auto_charts/day_15/
